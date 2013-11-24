@@ -1,0 +1,24 @@
+--- TTM/3.4.0-3.x.x/via_chrome9_ttm/Makefile.orig	2013-11-09 04:17:01.312795951 +0000
++++ TTM/3.4.0-3.x.x/via_chrome9_ttm/Makefile	2013-11-09 04:17:19.262420121 +0000
+@@ -25,7 +25,7 @@
+  # Makefile for the drm device driver.  This driver provides support for the
+  # Direct Rendering Infrastructure (DRI) in XFree86 4.1.0 and higher.
+ 
+-ccflags-y = -Iinclude/drm -I${DRV_PATH}/${CBIOS_DIR} -DNOT_INCLUDE_MSM_MDP_H -DLINUX_BUILD_ENVIRMENT
++ccflags-y = -Iinclude/drm -I${DRV_PATH}/${CBIOS_DIR} -DNOT_INCLUDE_MSM_MDP_H -DLINUX_BUILD_ENVIRMENT -O2 -march=i686 -pipe -Wno-error=implicit-function-declaration
+ 
+ KERNELDIR ?= /lib/modules/$(shell uname -r)/build
+ CBIOS_DIR=../../cbios
+--- TTM/3.4.0-3.x.x/via_chrome9_ttm/Makefile.orig	2013-11-09 04:44:26.730475554 +0000
++++ TTM/3.4.0-3.x.x/via_chrome9_ttm/Makefile	2013-11-09 04:45:14.696102268 +0000
+@@ -58,7 +58,7 @@
+ 	@if [ ! -f ./via_chrome9.ko ]; then \
+ 		$(MAKE) -C $(KERNELDIR) M=$(PWD) modules;\
+ 	fi
+-	@if [ ! -d /lib/modules/$(shell uname -r)/kernel/drivers/gpu/drm/via_chrome9 ]; then \
+-		mkdir -p /lib/modules/$(shell uname -r)/kernel/drivers/gpu/drm/via_chrome9; \
++	@if [ ! -d $$DESTDIR/lib/modules/$(shell uname -r)/kernel/drivers/gpu/drm/via_chrome9 ]; then \
++		mkdir -p $$DESTDIR/lib/modules/$(shell uname -r)/kernel/drivers/gpu/drm/via_chrome9; \
+ 	fi
+-	@cp ./via_chrome9.ko /lib/modules/$(shell uname -r)/kernel/drivers/gpu/drm/via_chrome9/
++	@cp ./via_chrome9.ko $$DESTDIR/lib/modules/$(shell uname -r)/kernel/drivers/gpu/drm/via_chrome9/

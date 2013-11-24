@@ -1,0 +1,15 @@
+--- drivers/video/Kconfig.orig	2013-11-11 17:41:27.331322490 +0000
++++ drivers/video/Kconfig	2013-11-11 17:41:34.514596675 +0000
+@@ -24,8 +24,11 @@
+ source "drivers/gpu/stub/Kconfig"
+ 
+ config VGASTATE
+-       tristate
++       tristate "VGA State Function used by some out of tree FB modules"
++       depends on FB
+        default n
++       ---help---
++         An old function still used by some out of tree framebuffer drivers.
+ 
+ config VIDEO_OUTPUT_CONTROL
+ 	tristate "Lowlevel video output switch controls"

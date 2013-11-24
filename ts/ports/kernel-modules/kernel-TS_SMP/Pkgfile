@@ -4,12 +4,13 @@
 
 name=kernel-TS_SMP
 pname=${name%-*}
-version=3.10.14
-sversion=3.10.14
+version=3.4.70
+sversion=3.4.70
 kname=${version}TS_SMP
 release=1
 source=(ftp://ftp.kernel.org/pub/linux/kernel/v3.x/linux-$sversion.tar.bz2 \
-	fbcondecor-0.9.6-3.8.patch \
+        https://raw.github.com/mjanusz/homepage/master/projects/fbcondecor/fbcondecor-0.9.6-3.5-rc3.patch \
+	vgastate.patch
 	/usr/src/kernels/aufs/patches/aufs3.patch \
 	ts.config)
 
@@ -22,8 +23,9 @@ build() {
 #		ln -sf ~/.ssh/id_rsa signing_key.priv
 #		openssl x509 -outform der -in signing_key.priv -out signing_key.x509
 #	fi
-	patch -p1 <../fbcondecor-0.9.6-3.8.patch
-	patch -p1 < ../aufs3.patch
+	patch -p1 -i $SRC/fbcondecor-0.9.6-3.5-rc3.patch
+	patch -p1 -i $SRC/aufs3.patch
+	patch -p0 -i $SRC/vgastate.patch
 
 	make modules_prepare __headers
 	mkdir -p $PKG/usr/src/kernels/$kname

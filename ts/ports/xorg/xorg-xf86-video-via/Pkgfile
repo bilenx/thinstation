@@ -1,0 +1,36 @@
+# Description: xorg driver xf86-video-openchrome
+# URL: http://www.openchrome.org
+# Maintainer: CRUX Xorg Team, xorg-ports at crux dot nu
+# Depends on: xorg-server
+
+name=xorg-xf86-video-via
+version=5.75.52.92
+kver=3.4.70
+release=1
+source=(5.76.52.92-opensource-007-126076.tar.gz \
+	ttm.patch \
+	uxa.patch \
+	mibs.patch)
+
+build() {
+
+	cd 5.76.52.92-opensource-007-126076
+	patch -p0 -i $SRC/ttm.patch
+	patch -p0 -i $SRC/uxa.patch
+	patch -p0 -i $SRC/mibs.patch
+
+	cd TTM/3.4.0-3.x.x/via_chrome9_ttm
+
+	export REPORT_KERNEL=${kver}TS_SMP
+        make
+	make DESTDIR=$PKG install
+	make clean
+
+	export REPORT_KERNEL=${kver}TS
+	make
+	make DESTDIR=$PKG install
+
+	cd ../../../XServer
+	make
+	make DESTDIR=$PKG install
+}

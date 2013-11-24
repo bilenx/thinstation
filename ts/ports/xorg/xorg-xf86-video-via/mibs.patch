@@ -1,0 +1,22 @@
+diff -ur XServer.orig/src/via_driver.c XServer/src/via_driver.c
+--- XServer.orig/src/via_driver.c	2013-11-09 21:41:21.566296510 +0000
++++ XServer/src/via_driver.c	2013-11-09 21:42:03.879771929 +0000
+@@ -4688,7 +4688,6 @@
+ #endif
+ 
+ #if LINUX_VERSION_CODE < KERNEL_VERSION(3,8,0)
+-    miInitializeBackingStore(pScreen);
+ #endif
+     xf86SetBackingStore(pScreen);
+     xf86SetSilkenMouse(pScreen);
+diff -ur XServer.orig/src/via_driver_kms.c XServer/src/via_driver_kms.c
+--- XServer.orig/src/via_driver_kms.c	2013-11-09 21:41:21.566296510 +0000
++++ XServer/src/via_driver_kms.c	2013-11-09 21:42:23.100442505 +0000
+@@ -963,7 +963,6 @@
+ #endif
+ 
+ #if LINUX_VERSION_CODE < KERNEL_VERSION(3,8,0)
+-    miInitializeBackingStore(pScreen);
+ #endif
+     xf86SetBackingStore(pScreen);
+     xf86SetSilkenMouse(pScreen);

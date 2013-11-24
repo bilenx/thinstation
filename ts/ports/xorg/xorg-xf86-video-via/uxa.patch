@@ -1,0 +1,10 @@
+--- XServer/uxa/uxa-priv.h.orig	2013-11-09 04:29:26.371274483 +0000
++++ XServer/uxa/uxa-priv.h	2013-11-09 04:29:36.792633151 +0000
+@@ -58,7 +58,6 @@
+ #include "windowstr.h"
+ #include "servermd.h"
+ #if LINUX_VERSION_CODE < KERNEL_VERSION(3,8,0)
+-#include "mibstore.h"
+ #endif
+ #include "colormapst.h"
+ #include "gcstruct.h"

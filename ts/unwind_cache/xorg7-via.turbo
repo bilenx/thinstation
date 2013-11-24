@@ -1,0 +1,4 @@
+#ed3e4adbf9c705d775d66ea748a0ff56  .dna
+
+mkdir -p /ts/5.1/packages/xorg7-via/lib/xorg/modules/drivers
+cp /usr/lib/xorg/modules/drivers/via_drv.so /ts/5.1/packages/xorg7-via/lib/xorg/modules/drivers/.
